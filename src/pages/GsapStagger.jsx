@@ -1,6 +1,32 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 const GsapStagger = () => {
+  const t1=gsap.timeline({repeat:1,repeatDelay:1,})
   // TODO: Implement the gsap.stagger() method
+useGSAP(()=>{
+  
+  t1.to(".stagger-box",{
+    x:250,
+    rotation:360,
+    yoyo:true,
+    borderRadius:"100%",
+    stagger:0.5,
+    repeat:-1,
+    ease:"back.inOut",
+    duration:2
+})
+t1.to(".stagger-box",{
+  y:250,
+  rotation:360,
+  yoyo:true,
+  borderRadius:"0%",
+  stagger:{ease:"circ.inOut",
+    axis:'y',grid:[3,1],amount:1.5,from:"center"},
+  
+  duration:2
+})
 
+},[])
   return (
     <main>
       <h1>GsapStagger</h1>
@@ -29,8 +55,10 @@ const GsapStagger = () => {
         </a>{" "}
         feature.
       </p>
+      
 
       <div className="mt-20">
+        
         <div className="flex gap-5">
           <div className="w-20 h-20 bg-indigo-200 rounded-lg stagger-box" />
           <div className="w-20 h-20 bg-indigo-300 rounded-lg stagger-box" />
